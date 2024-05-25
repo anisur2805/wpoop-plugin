@@ -2,15 +2,17 @@
 
 namespace WPOOP\Base;
 
-class Enqueue {
+use WPOOP\Base\BaseController;
+
+class Enqueue extends BaseController {
   
     public function register() {
         add_action('admin_enqueue_scripts', array( $this, 'enqueue' ) );
     }
 
     public function enqueue() {
-        wp_enqueue_style( 'wpoop-plugin-style', WPOOP_PLUGIN_URL . 'assets/css/wpoop-plugin.css' );
-        wp_enqueue_script( 'wpoop-plugin-script', WPOOP_PLUGIN_URL . 'assets/js/wpoop-plugin.js' );
+        wp_enqueue_style( 'wpoop-plugin-style', $this->plugin_url . 'assets/css/wpoop-plugin.css' );
+        wp_enqueue_script( 'wpoop-plugin-script', $this->plugin_url . 'assets/js/wpoop-plugin.js' );
     }
 
 }

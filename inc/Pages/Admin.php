@@ -2,7 +2,9 @@
 
 namespace WPOOP\Pages;
 
-class Admin {
+use WPOOP\Base\BaseController;
+
+class Admin extends BaseController {
   
     public function register() {
         add_action('admin_menu', [$this, 'adminMenu']);
@@ -23,6 +25,6 @@ class Admin {
 
     public function admin_index()
     {
-        require_once( WPOOP_PLUGIN_PATH . 'templates/admin-page.php' );
+        require_once( $this->plugin_path . 'templates/admin-page.php' );
     }
 }

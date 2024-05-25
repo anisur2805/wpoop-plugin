@@ -2,10 +2,12 @@
 
 namespace WPOOP\Base;
 
-class SettingsLinks {
+use WPOOP\Base\BaseController;
+
+class SettingsLinks extends BaseController {
   
     public function register() {
-        add_filter( 'plugin_action_links_' . WPOOP_PLUGIN, array( $this, 'plugin_action_links' ) );
+        add_filter( 'plugin_action_links_' . $this->plugin, array( $this, 'plugin_action_links' ) );
     }
 
     public function plugin_action_links( $links ) {        
