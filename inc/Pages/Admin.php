@@ -2,29 +2,32 @@
 
 namespace WPOOP\Pages;
 
+use WPOOP\API\SettingsAPI;
 use WPOOP\Base\BaseController;
 
 class Admin extends BaseController {
+
+    public $settings;
+
+    public $pages = [];
+
+    public function __construct() {
+        $this->settings = new SettingsAPI();
+
+        $this->pages = [
+            [
+                'page_title' => 'WPOOP Plugin',
+                'menu_title' => 'WPOOP Plugin',
+                'capability' => 'manage_options',
+                'menu_slug'  => 'wpoop-plugin',
+                'callback'   => function() { echo 'Hello'; },
+                'icon_url'   => 'dashicons-store',
+                'position'   => 110
+            ],
+        ];
+    }
   
     public function register() {
-        add_action('admin_menu', [$this, 'adminMenu']);
-    }
-
-    public function adminMenu()
-    {
-        add_menu_page(
-            'WPOOP Plugin',
-            'WPOOP Plugin',
-            'manage_options',
-            'wpoop-plugin',
-            [$this, 'admin_index'],
-            'dashicons-store',
-            110
-        );
-    }
-
-    public function admin_index()
-    {
-        require_once( $this->plugin_path . 'templates/admin-page.php' );
+        $this->settings->add_pages( $this->pages )->register();
     }
 }
