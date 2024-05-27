@@ -11,6 +11,8 @@ class Admin extends BaseController {
 
     public $pages = [];
 
+    public $subpages = [];
+
     public function __construct() {
         $this->settings = new SettingsAPI();
 
@@ -25,9 +27,36 @@ class Admin extends BaseController {
                 'position'   => 110
             ],
         ];
+
+        $this->subpages = [
+            [
+                'parent_slug' => 'wpoop-plugin',
+                'page_title' => 'CPT Manager',
+                'menu_title' => 'CPT Manager',
+                'capability' => 'manage_options',
+                'menu_slug'  => 'wpoop-cpt',
+                'callback'   => function() { echo 'Hello world'; },
+            ],
+            [
+                'parent_slug' => 'wpoop-plugin',
+                'page_title' => 'Taxonomy Manager',
+                'menu_title' => 'Taxonomy Manager',
+                'capability' => 'manage_options',
+                'menu_slug'  => 'wpoop-taxonomies',
+                'callback'   => function() { echo 'Hello Taxonomies'; },
+            ],
+            [
+                'parent_slug' => 'wpoop-plugin',
+                'page_title' => 'Custom Widgets',
+                'menu_title' => 'Custom Widget',
+                'capability' => 'manage_options',
+                'menu_slug'  => 'wpoop-widgets',
+                'callback'   => function() { echo 'Hello Widgets'; },
+            ],
+        ];
     }
   
     public function register() {
-        $this->settings->add_pages( $this->pages )->register();
+        $this->settings->add_pages( $this->pages )->with_sub_page( 'Dashboard' )->add_sub_pages( $this->subpages )->register();
     }
 }
