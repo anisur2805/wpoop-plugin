@@ -1,0 +1,1 @@
+<h1>Hello Taxonomy</h1>
