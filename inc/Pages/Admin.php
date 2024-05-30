@@ -70,4 +70,49 @@ class Admin extends BaseController {
 			),
 		);
 	}
+
+	public function set_settings() {
+		$args = array(
+			array(
+				'option_group' => 'wpoop_plugin_options_group',
+				'option_name'  => 'text_example',
+				'callback'     => array( $this->admin_callback, 'wpoop_plugin_group' ),
+			),
+		);
+
+		$this->settings->set_settings( $args );
+	}
+
+	public function set_sections() {
+		$args = array(
+			array(
+				'id'       => 'wpoop_plugin_options_group',
+				'title'    => 'WPOOP Plugin Settings',
+				'callback' => array( $this->admin_callback, 'wpoop_plugin_section' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_plugin',
+			),
+		);
+
+		$this->settings->set_sections( $args );
+	}
+
+	public function set_fields() {
+		$args = array(
+			array(
+				'id'       => 'text_example',
+				'title'    => 'Text Example',
+				'callback' => array( $this->admin_callback, 'wpoop_plugin_text' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_plugin',
+				'args'     => array(
+					'label_for'   => 'text_example',
+					'class'       => 'example-class',
+					'option_name' => 'text_example',
+				),
+			),
+		);
+
+		$this->settings->set_fields( $args );
+	}
 }

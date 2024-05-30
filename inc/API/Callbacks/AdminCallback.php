@@ -20,4 +20,12 @@ class AdminCallback extends BaseController {
 	public function widgets_manager() {
 		return load_template( $this->plugin_path . 'templates/widgets-page.php' );
 	}
+
+	public function wpoop_plugin_group( $input ) {
+		return $input;
+	}
+
+	public function wpoop_plugin_section() {
+		echo '<h2>WPOOP Plugin Section</h2>';
+	}
 }
