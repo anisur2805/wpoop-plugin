@@ -45,7 +45,7 @@ class Admin extends BaseController {
 				'page_title' => 'WPOOP Plugin',
 				'menu_title' => 'WPOOP Plugin',
 				'capability' => 'manage_options',
-				'menu_slug'  => 'wpoop-plugin',
+				'menu_slug'  => 'wpoop_plugin',
 				'callback'   => array( $this->admin_callback, 'admin_dashboard' ),
 				'icon_url'   => 'dashicons-store',
 				'position'   => 110,
@@ -56,7 +56,7 @@ class Admin extends BaseController {
 	public function set_subpages() {
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'wpoop-plugin',
+				'parent_slug' => 'wpoop_plugin',
 				'page_title'  => 'CPT Manager',
 				'menu_title'  => 'CPT Manager',
 				'capability'  => 'manage_options',
@@ -64,7 +64,7 @@ class Admin extends BaseController {
 				'callback'    => array( $this->admin_callback, 'cta_manager' ),
 			),
 			array(
-				'parent_slug' => 'wpoop-plugin',
+				'parent_slug' => 'wpoop_plugin',
 				'page_title'  => 'Taxonomy Manager',
 				'menu_title'  => 'Taxonomy Manager',
 				'capability'  => 'manage_options',
@@ -72,7 +72,7 @@ class Admin extends BaseController {
 				'callback'    => array( $this->admin_callback, 'taxonomies_manager' ),
 			),
 			array(
-				'parent_slug' => 'wpoop-plugin',
+				'parent_slug' => 'wpoop_plugin',
 				'page_title'  => 'Custom Widgets',
 				'menu_title'  => 'Custom Widget',
 				'capability'  => 'manage_options',
@@ -83,15 +83,13 @@ class Admin extends BaseController {
 	}
 
 	public function set_settings() {
-		$args = array();
-
-		foreach ( $this->managers as $key => $manager ) {
-			$args[] = array(
+		$args = array(
+			array(
 				'option_group' => 'wpoop_plugin_options_settings',
-				'option_name'  => $key,
+				'option_name'  => 'wpoop_plugin',
 				'callback'     => array( $this->callback_mngr, 'checkboxSanitize' ),
-			);
-		}
+			),
+		);
 
 		$this->settings->set_settings( $args );
 	}
@@ -102,7 +100,7 @@ class Admin extends BaseController {
 				'id'       => 'wpoop_admin_index',
 				'title'    => 'WPOOP Plugin Settings',
 				'callback' => array( $this->callback_mngr, 'adminSection' ),
-				'page'     => 'wpoop-plugin',
+				'page'     => 'wpoop_plugin',
 			),
 		);
 
@@ -116,11 +114,12 @@ class Admin extends BaseController {
 				'id'       => $key,
 				'title'    => $value,
 				'callback' => array( $this->callback_mngr, 'checkboxField' ),
-				'page'     => 'wpoop-plugin',
+				'page'     => 'wpoop_plugin',
 				'section'  => 'wpoop_admin_index',
 				'args'     => array(
-					'label_for' => $key,
-					'class'     => 'ui-toggle',
+					'option_name' => 'wpoop_plugin',
+					'label_for'   => $key,
+					'class'       => 'ui-toggle',
 				),
 			);
 		}

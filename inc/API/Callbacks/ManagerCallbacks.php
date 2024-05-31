@@ -5,7 +5,13 @@ use WPOOP\Base\BaseController;
 
 class ManagerCallbacks extends BaseController {
 	public function checkboxSanitize( $input ) {
-		return ( isset( $input ) ? true : false );
+		$output = array();
+
+		foreach ( $this->managers as $key => $value ) {
+			$output[ $key ] = isset( $input[ $key ] ) ? true : false;
+		}
+
+		return $output;
 	}
 
 	public function adminSection() {
@@ -13,10 +19,11 @@ class ManagerCallbacks extends BaseController {
 	}
 
 	public function checkboxField( $args ) {
-		$name     = $args['label_for'];
-		$classes  = $args['class'];
-		$checkbox = get_option( $name );
+		$name        = $args['label_for'];
+		$classes     = $args['class'];
+		$option_name = $args['option_name'];
+		$checkbox    = get_option( $option_name );
 
-		echo '<div class="ui-toggle"><input type="checkbox" class="' . $classes . '" name="' . $name . '" id="' . $name . '" value="1"  ' . ( $checkbox ? 'checked' : '' ) . '/><label for="'. $name .'">' . $args['label'] . '<div></div></label></div>';
+		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" class="" value="1"  ' . ( $checkbox[ $name ] ? 'checked' : '' ) . '/><label for="' . $name . '">' . $args['label'] . '<div></div></label></div>';
 	}
 }

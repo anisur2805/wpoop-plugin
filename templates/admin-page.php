@@ -13,7 +13,7 @@
 			<form method="post" action="options.php">
 				<?php
 				settings_fields( 'wpoop_plugin_options_settings' );
-				do_settings_sections( 'wpoop-plugin' );
+				do_settings_sections( 'wpoop_plugin' );
 				submit_button();
 				?>
 			</form>
