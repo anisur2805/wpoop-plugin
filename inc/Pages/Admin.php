@@ -25,6 +25,12 @@ class Admin extends BaseController {
 
 		$this->set_subpages();
 
+		$this->set_settings();
+
+		$this->set_sections();
+
+		$this->set_fields();
+
 		$this->settings->add_pages( $this->pages )->with_sub_page( 'Dashboard' )->add_sub_pages( $this->subpages )->register();
 	}
 
@@ -76,7 +82,11 @@ class Admin extends BaseController {
 			array(
 				'option_group' => 'wpoop_plugin_options_group',
 				'option_name'  => 'text_example',
-				'callback'     => array( $this->admin_callback, 'wpoop_plugin_group' ),
+				'callback'     => array( $this->admin_callback, 'optionsGroup' ),
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_group',
+				'option_name'  => 'first_name',
 			),
 		);
 
@@ -86,11 +96,10 @@ class Admin extends BaseController {
 	public function set_sections() {
 		$args = array(
 			array(
-				'id'       => 'wpoop_plugin_options_group',
+				'id'       => 'wpoop_admin_index',
 				'title'    => 'WPOOP Plugin Settings',
-				'callback' => array( $this->admin_callback, 'wpoop_plugin_section' ),
+				'callback' => array( $this->admin_callback, 'adminSection' ),
 				'page'     => 'wpoop-plugin',
-				'section'  => 'wpoop_plugin',
 			),
 		);
 
@@ -104,11 +113,23 @@ class Admin extends BaseController {
 				'title'    => 'Text Example',
 				'callback' => array( $this->admin_callback, 'wpoop_plugin_text' ),
 				'page'     => 'wpoop-plugin',
-				'section'  => 'wpoop_plugin',
+				'section'  => 'wpoop_admin_index',
 				'args'     => array(
 					'label_for'   => 'text_example',
 					'class'       => 'example-class',
 					'option_name' => 'text_example',
+				),
+			),
+			array(
+				'id'       => 'first_name',
+				'title'    => 'First Name',
+				'callback' => array( $this->admin_callback, 'wpoop_plugin_first_name' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for'   => 'first_name',
+					'class'       => 'example-class',
+					'option_name' => 'first_name',
 				),
 			),
 		);

@@ -21,11 +21,21 @@ class AdminCallback extends BaseController {
 		return load_template( $this->plugin_path . 'templates/widgets-page.php' );
 	}
 
-	public function wpoop_plugin_group( $input ) {
+	public function optionsGroup( $input ) {
 		return $input;
 	}
 
-	public function wpoop_plugin_section() {
-		echo '<h2>WPOOP Plugin Section</h2>';
+	public function adminSection() {
+		echo 'WPOOP Plugin Section';
+	}
+
+	public function wpoop_plugin_text() {
+		$example_text = esc_attr( get_option( 'text_example' ) );
+		echo '<input type="text" class="regular-text" name="text_example" value="' . $example_text . '" />';
+	}
+
+	public function wpoop_plugin_first_name() {
+		$first_name = esc_attr( get_option( 'first_name' ) );
+		echo '<input type="text" class="regular-text" name="first_name" value="' . $first_name . '" />';
 	}
 }
