@@ -12,7 +12,7 @@
 		<div class="tab-pane active" id="tab-1">
 			<form method="post" action="options.php">
 				<?php
-				settings_fields( 'wpoop_plugin_options_group' );
+				settings_fields( 'wpoop_plugin_options_settings' );
 				do_settings_sections( 'wpoop-plugin' );
 				submit_button();
 				?>

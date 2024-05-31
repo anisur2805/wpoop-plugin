@@ -5,12 +5,15 @@ namespace WPOOP\Pages;
 use WPOOP\API\SettingsAPI;
 use WPOOP\Base\BaseController;
 use WPOOP\API\Callbacks\AdminCallback;
+use WPOOP\API\Callbacks\ManagerCallbacks;
 
 class Admin extends BaseController {
 
 	public $settings;
 
 	public $admin_callback;
+
+	public $callback_mngr;
 
 	public $pages = array();
 
@@ -20,6 +23,8 @@ class Admin extends BaseController {
 		$this->settings = new SettingsAPI();
 
 		$this->admin_callback = new AdminCallback();
+
+		$this->callback_mngr = new ManagerCallbacks();
 
 		$this->set_pages();
 
@@ -80,13 +85,37 @@ class Admin extends BaseController {
 	public function set_settings() {
 		$args = array(
 			array(
-				'option_group' => 'wpoop_plugin_options_group',
-				'option_name'  => 'text_example',
-				'callback'     => array( $this->admin_callback, 'optionsGroup' ),
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'cpt_manager',
+				'callback'     => array( $this->callback_mngr, 'checkboxSanitize' ),
 			),
 			array(
-				'option_group' => 'wpoop_plugin_options_group',
-				'option_name'  => 'first_name',
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'taxonomy_manager',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'media_widget',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'gallery_manager',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'testimonial_manager',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'login_manager',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'membership_manager',
+			),
+			array(
+				'option_group' => 'wpoop_plugin_options_settings',
+				'option_name'  => 'chat_manager',
 			),
 		);
 
@@ -98,7 +127,7 @@ class Admin extends BaseController {
 			array(
 				'id'       => 'wpoop_admin_index',
 				'title'    => 'WPOOP Plugin Settings',
-				'callback' => array( $this->admin_callback, 'adminSection' ),
+				'callback' => array( $this->callback_mngr, 'adminSection' ),
 				'page'     => 'wpoop-plugin',
 			),
 		);
@@ -109,27 +138,91 @@ class Admin extends BaseController {
 	public function set_fields() {
 		$args = array(
 			array(
-				'id'       => 'text_example',
-				'title'    => 'Text Example',
-				'callback' => array( $this->admin_callback, 'wpoop_plugin_text' ),
+				'id'       => 'cpt_manager',
+				'title'    => 'Active CPT Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
 				'page'     => 'wpoop-plugin',
 				'section'  => 'wpoop_admin_index',
 				'args'     => array(
-					'label_for'   => 'text_example',
-					'class'       => 'example-class',
-					'option_name' => 'text_example',
+					'label_for' => 'cpt_manager',
+					'class'     => 'ui-toggle',
 				),
 			),
 			array(
-				'id'       => 'first_name',
-				'title'    => 'First Name',
-				'callback' => array( $this->admin_callback, 'wpoop_plugin_first_name' ),
+				'id'       => 'taxonomy_manager',
+				'title'    => 'Active Taxonomy Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
 				'page'     => 'wpoop-plugin',
 				'section'  => 'wpoop_admin_index',
 				'args'     => array(
-					'label_for'   => 'first_name',
-					'class'       => 'example-class',
-					'option_name' => 'first_name',
+					'label_for' => 'taxonomy_manager',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'media_widget',
+				'title'    => 'Active Media Widget Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'media_widget',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'gallery_manager',
+				'title'    => 'Active Gallery Widget Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'gallery_manager',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'testimonial_manager',
+				'title'    => 'Active Testimonial Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'testimonial_manager',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'login_manager',
+				'title'    => 'Active Login Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'login_manager',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'membership_manager',
+				'title'    => 'Active Membership Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'membership_manager',
+					'class'     => 'ui-toggle',
+				),
+			),
+			array(
+				'id'       => 'chat_manager',
+				'title'    => 'Active Chat Manager',
+				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'page'     => 'wpoop-plugin',
+				'section'  => 'wpoop_admin_index',
+				'args'     => array(
+					'label_for' => 'chat_manager',
+					'class'     => 'ui-toggle',
 				),
 			),
 		);
