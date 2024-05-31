@@ -13,10 +13,10 @@ class ManagerCallbacks extends BaseController {
 	}
 
 	public function checkboxField( $args ) {
-		$name        = $args['label_for'];
-		$classes     = $args['class'];
-		$checkbox    = get_option( $name );
+		$name     = $args['label_for'];
+		$classes  = $args['class'];
+		$checkbox = get_option( $name );
 
-		echo '<input type="checkbox" class="' . $classes . '" name="' . $name . '" value="1"  ' . ( $checkbox ? 'checked' : '' ) . '/>';
+		echo '<div class="ui-toggle"><input type="checkbox" class="' . $classes . '" name="' . $name . '" id="' . $name . '" value="1"  ' . ( $checkbox ? 'checked' : '' ) . '/><label for="'. $name .'">' . $args['label'] . '<div></div></label></div>';
 	}
 }
