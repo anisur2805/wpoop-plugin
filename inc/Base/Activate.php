@@ -2,13 +2,20 @@
 namespace WPOOP\Base;
 
 class Activate {
-     /**
-      * Activate plugin
-      *
-      * @since 1.0.0
-      */
-    public static function active() {
-        flush_rewrite_rules();
-    }
-}
+	/**
+	 * Activate plugin
+	 *
+	 * @since 1.0.0
+	 */
+	public static function active() {
+		flush_rewrite_rules();
 
+		if ( get_option( 'wpoop_plugin' ) ) {
+			return;
+		}
+
+		$default = array();
+
+		update_option( 'wpoop_plugin', $default );
+	}
+}
