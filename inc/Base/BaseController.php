@@ -35,4 +35,11 @@ class BaseController {
 			'chat_manager'         => 'Active Chat Manager',
 		);
 	}
+
+	public function activate_key( string $key ) {
+		$checkbox = get_option( 'wpoop_plugin' );
+		$checked  = isset( $checkbox[ $key ] ) ? $checkbox[ $key ] : false;
+
+		return $checked;
+	}
 }

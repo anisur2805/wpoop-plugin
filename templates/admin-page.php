@@ -1,5 +1,5 @@
 <div class="wrap">
-	<h1>Hello world</h1>
+	<h1><?php echo get_admin_page_title(); ?> </h1>
 	<?php settings_errors(); ?>
 
 	<ul class="nav nav-tabs">

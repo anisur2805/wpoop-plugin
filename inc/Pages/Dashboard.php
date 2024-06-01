@@ -60,7 +60,7 @@ class Dashboard extends BaseController {
 	// 			'page_title'  => 'CPT Manager',
 	// 			'menu_title'  => 'CPT Manager',
 	// 			'capability'  => 'manage_options',
-	// 			'menu_slug'   => 'wpoop-cpt',
+	// 			'menu_slug'   => 'wpoop_cpt',
 	// 			'callback'    => array( $this->admin_callback, 'cta_manager' ),
 	// 		),
 	// 		array(
