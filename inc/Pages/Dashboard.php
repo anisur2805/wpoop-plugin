@@ -7,7 +7,7 @@ use WPOOP\Base\BaseController;
 use WPOOP\API\Callbacks\AdminCallback;
 use WPOOP\API\Callbacks\ManagerCallbacks;
 
-class Admin extends BaseController {
+class Dashboard extends BaseController {
 
 	public $settings;
 
@@ -28,7 +28,7 @@ class Admin extends BaseController {
 
 		$this->set_pages();
 
-		$this->set_subpages();
+		// $this->set_subpages();
 
 		$this->set_settings();
 
@@ -53,34 +53,34 @@ class Admin extends BaseController {
 		);
 	}
 
-	public function set_subpages() {
-		$this->subpages = array(
-			array(
-				'parent_slug' => 'wpoop_plugin',
-				'page_title'  => 'CPT Manager',
-				'menu_title'  => 'CPT Manager',
-				'capability'  => 'manage_options',
-				'menu_slug'   => 'wpoop-cpt',
-				'callback'    => array( $this->admin_callback, 'cta_manager' ),
-			),
-			array(
-				'parent_slug' => 'wpoop_plugin',
-				'page_title'  => 'Taxonomy Manager',
-				'menu_title'  => 'Taxonomy Manager',
-				'capability'  => 'manage_options',
-				'menu_slug'   => 'wpoop-taxonomies',
-				'callback'    => array( $this->admin_callback, 'taxonomies_manager' ),
-			),
-			array(
-				'parent_slug' => 'wpoop_plugin',
-				'page_title'  => 'Custom Widgets',
-				'menu_title'  => 'Custom Widget',
-				'capability'  => 'manage_options',
-				'menu_slug'   => 'wpoop-widgets',
-				'callback'    => array( $this->admin_callback, 'widgets_manager' ),
-			),
-		);
-	}
+	// public function set_subpages() {
+	// 	$this->subpages = array(
+	// 		array(
+	// 			'parent_slug' => 'wpoop_plugin',
+	// 			'page_title'  => 'CPT Manager',
+	// 			'menu_title'  => 'CPT Manager',
+	// 			'capability'  => 'manage_options',
+	// 			'menu_slug'   => 'wpoop-cpt',
+	// 			'callback'    => array( $this->admin_callback, 'cta_manager' ),
+	// 		),
+	// 		array(
+	// 			'parent_slug' => 'wpoop_plugin',
+	// 			'page_title'  => 'Taxonomy Manager',
+	// 			'menu_title'  => 'Taxonomy Manager',
+	// 			'capability'  => 'manage_options',
+	// 			'menu_slug'   => 'wpoop-taxonomies',
+	// 			'callback'    => array( $this->admin_callback, 'taxonomies_manager' ),
+	// 		),
+	// 		array(
+	// 			'parent_slug' => 'wpoop_plugin',
+	// 			'page_title'  => 'Custom Widgets',
+	// 			'menu_title'  => 'Custom Widget',
+	// 			'capability'  => 'manage_options',
+	// 			'menu_slug'   => 'wpoop-widgets',
+	// 			'callback'    => array( $this->admin_callback, 'widgets_manager' ),
+	// 		),
+	// 	);
+	// }
 
 	public function set_settings() {
 		$args = array(

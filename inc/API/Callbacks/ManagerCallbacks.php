@@ -26,6 +26,6 @@ class ManagerCallbacks extends BaseController {
 		$is_checked  = $checkbox[ $name ] ? true : false;
 		$checked     = isset( $checkbox[ $name ] ) ? $is_checked : false;
 
-		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" class="" value="1"  ' . ( $checked ? 'checked' : '' ) . '/><label for="' . $name . '">' . $args['label'] . '<div></div></label></div>';
+		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" class="" value="1"  ' . ( $checked ? 'checked' : '' ) . '/><label for="' . $name . '"><div></div></label></div>';
 	}
 }
