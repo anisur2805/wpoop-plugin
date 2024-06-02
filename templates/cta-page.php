@@ -15,7 +15,7 @@
 		$output = get_option( 'wpoop_plugin_cpt' );
 
 		?>
-		<table>
+		<table class="cpt-manager-table">
 			<tr>
 				<th>ID</th>
 				<th>Singular Name</th>
@@ -26,7 +26,10 @@
 			</tr>
 		<?php
 		foreach ( $output as $value ) {
-			echo "<tr><td>{$value['post_type']}</td><td>{$value['singular_name']}</td><td>{$value['plural_name']}</td><td>{$value['public']}</td><td>{$value['has_archive']}</td><td><a href='#'>Edit</a> | <a href='#'>Delete</a></td></tr>";
+			$public      = ( isset( $value['public'] ) ? 'TRUE' : 'FALSE' );
+			$has_archive = ( isset( $value['has_archive'] ) ? 'TRUE' : 'FALSE' );
+
+			echo "<tr><td>{$value['post_type']}</td><td>{$value['singular_name']}</td><td>{$value['plural_name']}</td><td>{$public}</td><td>{$has_archive}</td><td><a href='#'>Edit</a> | <a href='#'>Delete</a></td></tr>";
 		}
 		?>
 		</table>

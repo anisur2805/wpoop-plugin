@@ -10,13 +10,14 @@ class CptCallbacks {
 	public function cptSanitize( $input ) {
 		$output = get_option( 'wpoop_plugin_cpt' );
 
+		if ( count( $output ) === 0 ) {
+			$output[ $input['post_type'] ] = $input;
+		}
+
 		foreach ( $output as $key => $value ) {
 			if ( $input['post_type'] === $key ) {
 				$output[ $key ] = $input;
-				error_log( 'Alt log: if ' );
 			} else {
-				error_log( 'Alt log: else ' );
-
 				$output[ $input['post_type'] ] = $input;
 			}
 		}
@@ -24,17 +25,15 @@ class CptCallbacks {
 		return $output;
 	}
 
-	public function textField( $args ) {
+	public function text_field( $args ) {
 		$name        = $args['label_for'];
 		$option_name = $args['option_name'];
-		// $input       = get_option( $option_name );
-		// $value       = $input[ $name ];
 		$placeholder = $args['placeholder'];
 
-		echo '<input type="text" id="' . $name . '" value="" id="post_type" name="' . $option_name . '[' . $name . ']" class="regular-text" placeholder="' . $placeholder . '"/>';
+		echo '<input type="text" id="' . $name . '" value="" id="post_type" name="' . $option_name . '[' . $name . ']" class="regular-text" placeholder="' . $placeholder . '" required/>';
 	}
 
-	public function checkboxField( $args ) {
+	public function checkbox_field( $args ) {
 		$name        = $args['label_for'];
 		$classes     = $args['class'];
 		$option_name = $args['option_name'];

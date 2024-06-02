@@ -53,10 +53,8 @@
     box-shadow: 0 5px 4px -2px rgba(0, 0, 0, 0.05);
 }
 
-
 /* Table Style */
-/* Table Styles */
-table {
+table.cpt-manager-table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -64,8 +62,7 @@ table {
     text-align: left;
 }
 
-/* Table Header Styles */
-table thead th {
+table.cpt-manager-table thead th {
     background-color: #009879;
     color: #ffffff;
     padding: 12px 15px;
@@ -73,32 +70,30 @@ table thead th {
     border: 1px solid #dddddd;
 }
 
-/* Table Body Styles */
-table tbody tr {
+table.cpt-manager-table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-table tbody tr:nth-of-type(even) {
+table.cpt-manager-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-table tbody tr:last-of-type {
+table.cpt-manager-table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 
-/* Table Cell Styles */
-table tbody th,table tbody td {
+table.cpt-manager-table tbody th,
+table.cpt-manager-table tbody td {
     padding: 12px 15px;
     border: 1px solid #dddddd;
 }
 
-/* Action Links */
-table tbody td a {
+table.cpt-manager-table tbody td a {
     color: #009879;
     text-decoration: none;
     font-weight: bold;
 }
 
-table tbody td a:hover {
+table.cpt-manager-table tbody td a:hover {
     text-decoration: underline;
 }

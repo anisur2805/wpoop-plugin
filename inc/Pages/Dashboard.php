@@ -84,7 +84,7 @@ class Dashboard extends BaseController {
 			$args[] = array(
 				'id'       => $key,
 				'title'    => $value,
-				'callback' => array( $this->callback_mngr, 'checkboxField' ),
+				'callback' => array( $this->callback_mngr, 'checkbox_field' ),
 				'page'     => 'wpoop_plugin',
 				'section'  => 'wpoop_admin_index',
 				'args'     => array(

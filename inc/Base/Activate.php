@@ -10,17 +10,14 @@ class Activate {
 	public static function active() {
 		flush_rewrite_rules();
 
-		$default  = array();
-		$default2 = array(
-			array(),
-		);
+		$default = array();
 
 		if ( ! get_option( 'wpoop_plugin' ) ) {
 			update_option( 'wpoop_plugin', $default );
 		}
 
 		if ( ! get_option( 'wpoop_plugin_cpt' ) ) {
-			update_option( 'wpoop_plugin_cpt', $default2 );
+			update_option( 'wpoop_plugin_cpt', $default );
 		}
 	}
 }

@@ -18,7 +18,7 @@ class ManagerCallbacks extends BaseController {
 		echo 'Manage the Sections and Features of this Plugin by activating or deactivating the checkboxes from the below.';
 	}
 
-	public function checkboxField( $args ) {
+	public function checkbox_field( $args ) {
 		$name        = $args['label_for'];
 		$classes     = $args['class'];
 		$option_name = $args['option_name'];
