@@ -9,6 +9,10 @@ class AdminCallback extends BaseController {
 		return load_template( $this->plugin_path . 'templates/admin-page.php' );
 	}
 
+	public function cpt_manager() {
+		return load_template( $this->plugin_path . 'templates/cta-page.php' );
+	}
+
 	public function cta_manager() {
 		return load_template( $this->plugin_path . 'templates/cta-page.php' );
 	}

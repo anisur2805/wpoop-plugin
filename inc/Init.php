@@ -37,8 +37,8 @@ final class Init {
 	 * @param string $class class from the service array
 	 * @return class instance new instance of the class
 	 */
-	private static function instantiate( $class ) {
-		$service = new $class();
+	private static function instantiate( $new_class ) {
+		$service = new $new_class();
 		return $service;
 	}
 }

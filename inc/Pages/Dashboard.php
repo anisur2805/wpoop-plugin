@@ -53,35 +53,6 @@ class Dashboard extends BaseController {
 		);
 	}
 
-	// public function set_subpages() {
-	// 	$this->subpages = array(
-	// 		array(
-	// 			'parent_slug' => 'wpoop_plugin',
-	// 			'page_title'  => 'CPT Manager',
-	// 			'menu_title'  => 'CPT Manager',
-	// 			'capability'  => 'manage_options',
-	// 			'menu_slug'   => 'wpoop_cpt',
-	// 			'callback'    => array( $this->admin_callback, 'cta_manager' ),
-	// 		),
-	// 		array(
-	// 			'parent_slug' => 'wpoop_plugin',
-	// 			'page_title'  => 'Taxonomy Manager',
-	// 			'menu_title'  => 'Taxonomy Manager',
-	// 			'capability'  => 'manage_options',
-	// 			'menu_slug'   => 'wpoop-taxonomies',
-	// 			'callback'    => array( $this->admin_callback, 'taxonomies_manager' ),
-	// 		),
-	// 		array(
-	// 			'parent_slug' => 'wpoop_plugin',
-	// 			'page_title'  => 'Custom Widgets',
-	// 			'menu_title'  => 'Custom Widget',
-	// 			'capability'  => 'manage_options',
-	// 			'menu_slug'   => 'wpoop-widgets',
-	// 			'callback'    => array( $this->admin_callback, 'widgets_manager' ),
-	// 		),
-	// 	);
-	// }
-
 	public function set_settings() {
 		$args = array(
 			array(
