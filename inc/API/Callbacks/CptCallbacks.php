@@ -16,8 +16,10 @@ class CptCallbacks {
 			return $output;
 		}
 
-		if ( count( $output ) < 1 ) {
+		if ( count( $output ) == 0 ) {
 			$output[ $input['post_type'] ] = $input;
+
+			return $output;
 		}
 
 		foreach ( $output as $key => $value ) {
@@ -35,15 +37,29 @@ class CptCallbacks {
 		$name        = $args['label_for'];
 		$option_name = $args['option_name'];
 		$placeholder = $args['placeholder'];
+		$value       = '';
+		$readonly    = '';
 
-		echo '<input type="text" id="' . $name . '" value="" id="post_type" name="' . $option_name . '[' . $name . ']" class="regular-text" placeholder="' . $placeholder . '" required/>';
+		if ( isset( $_POST['edit_post'] ) ) {
+			$input    = get_option( $option_name );
+			$value    = $input[ $_POST['edit_post'] ][ $name ];
+			$readonly = ( 'post_type' === $name ) ? 'readonly' : '';
+		}
+
+		echo '<input type="text" ' . $readonly . ' id="' . $name . '" value="' . $value . '" id="post_type" name="' . $option_name . '[' . $name . ']" class="regular-text" placeholder="' . $placeholder . '" required/>';
 	}
 
 	public function checkbox_field( $args ) {
 		$name        = $args['label_for'];
 		$classes     = $args['class'];
 		$option_name = $args['option_name'];
+		$checked     = false;
 
-		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" class="" value="1" /><label for="' . $name . '"><div></div></label></div>';
+		if ( isset( $_POST['edit_post'] ) ) {
+			$checked = get_option( $option_name );
+			$checked = isset( $checked[ $_POST['edit_post'] ][ $name ] ) ?: false;
+		}
+
+		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" ' . ( $checked ? 'checked' : '' ) . ' class="" value="1" /><label for="' . $name . '"><div></div></label></div>';
 	}
 }
