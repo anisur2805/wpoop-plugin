@@ -10,7 +10,13 @@ class CptCallbacks {
 	public function cptSanitize( $input ) {
 		$output = get_option( 'wpoop_plugin_cpt' );
 
-		if ( count( $output ) === 0 ) {
+		if ( isset( $_POST['remove'] ) ) {
+			unset( $output[ $_POST['remove'] ] );
+
+			return $output;
+		}
+
+		if ( count( $output ) < 1 ) {
 			$output[ $input['post_type'] ] = $input;
 		}
 

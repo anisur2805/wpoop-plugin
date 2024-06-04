@@ -29,7 +29,11 @@
 			$public      = ( isset( $value['public'] ) ? 'TRUE' : 'FALSE' );
 			$has_archive = ( isset( $value['has_archive'] ) ? 'TRUE' : 'FALSE' );
 
-			echo "<tr><td>{$value['post_type']}</td><td>{$value['singular_name']}</td><td>{$value['plural_name']}</td><td>{$public}</td><td>{$has_archive}</td><td><a href='#'>Edit</a> | <a href='#'>Delete</a></td></tr>";
+			echo "<tr><td>{$value['post_type']}</td><td>{$value['singular_name']}</td><td>{$value['plural_name']}</td><td>{$public}</td><td>{$has_archive}</td><td class='form-actions'><a href='#'>Edit</a> | <form method='post' action='options.php'>";
+			settings_fields( 'wpoop_plugin_cpt_settings' );
+			echo '<input type="hidden" name="remove" value="' . $value['post_type'] . '">';
+			submit_button( 'Delete', 'small delete', 'submit', false, array( 'onclick' => 'return confirm("Are you sure you want to delete?")' ) );
+			echo '</form></td></tr>';
 		}
 		?>
 		</table>
