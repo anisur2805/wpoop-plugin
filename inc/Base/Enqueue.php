@@ -14,5 +14,6 @@ class Enqueue extends BaseController {
 		wp_enqueue_style( 'wpoop-plugin-style', $this->plugin_url . 'assets/css/wpoop-plugin.css' );
 		wp_enqueue_style( 'ui-toggle', $this->plugin_url . 'assets/css/ui-toggle.css' );
 		wp_enqueue_script( 'wpoop-plugin-script', $this->plugin_url . 'assets/js/wpoop-plugin.js' );
+		wp_enqueue_script( 'prettyprint-script', $this->plugin_url . 'assets/js/run_prettify.js' );
 	}
 }
