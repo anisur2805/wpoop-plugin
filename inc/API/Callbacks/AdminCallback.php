@@ -17,7 +17,7 @@ class AdminCallback extends BaseController {
 		return load_template( $this->plugin_path . 'templates/cta-page.php' );
 	}
 
-	public function taxonomies_manager() {
+	public function taxonomy_manager() {
 		return load_template( $this->plugin_path . 'templates/taxonomies-page.php' );
 	}
 
