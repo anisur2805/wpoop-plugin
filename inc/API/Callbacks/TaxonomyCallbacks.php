@@ -62,4 +62,33 @@ class TaxonomyCallbacks {
 
 		echo '<div class="' . $classes . '"><input type="checkbox" name="' . $option_name . '[' . $name . ']" id="' . $name . '" ' . ( $checked ? 'checked' : '' ) . ' class="" value="1" /><label for="' . $name . '"><div></div></label></div>';
 	}
+
+	public function checkbox_post_types_field( $args ) {
+		$output = '';
+
+		$name        = $args['label_for'];
+		$classes     = $args['class'];
+		$option_name = $args['option_name'];
+		$checked     = false;
+
+		if ( isset( $_POST['edit_taxonomy'] ) ) {
+			$checked_box = get_option( $option_name );
+		}
+
+		$post_types = get_post_types(
+			array(
+				'show_ui' => true,
+			)
+		);
+
+		foreach ( $post_types as $post ) {
+			if ( isset( $_POST['edit_taxonomy'] ) ) {
+				$checked = isset( $checked_box[ $_POST['edit_taxonomy'] ][ $name ][ $post ] ) ?: false;
+			}
+
+			$output .= '<div class="' . $classes . '" style="margin-bottom:10px"><input type="checkbox" name="' . $option_name . '[' . $name . '][' . $post . ']" id="' . $post . '" ' . ( $checked ? 'checked' : '' ) . ' class="" value="1" /><label for="' . $post . '"><div></div></label> ' . $post . '</div>';
+		}
+
+		echo $output;
+	}
 }

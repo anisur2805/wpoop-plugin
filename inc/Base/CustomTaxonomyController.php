@@ -11,15 +11,17 @@ class CustomTaxonomyController extends BaseController {
 
 	public $callback;
 	public $settings;
-	
+
 	public $tax_callbacks;
-	
+
 	public $subpages = array();
 
 	public $taxonomies = array();
 
 	public function register() {
-		if ( ! $this->activate_key( 'taxonomy_manager' ) ) return;
+		if ( ! $this->activate_key( 'taxonomy_manager' ) ) {
+			return;
+		}
 
 		$this->settings = new SettingsAPI();
 
@@ -123,6 +125,19 @@ class CustomTaxonomyController extends BaseController {
 					'array'       => 'taxonomy',
 				),
 			),
+			array(
+				'id'       => 'objects',
+				'title'    => 'Post Types',
+				'callback' => array( $this->tax_callbacks, 'checkbox_post_types_field' ),
+				'page'     => 'wpoop_tax',
+				'section'  => 'wpoop_tax_index',
+				'args'     => array(
+					'option_name' => 'wpoop_plugin_tax',
+					'label_for'   => 'objects',
+					'class'       => 'ui-toggle',
+					'array'       => 'taxonomy',
+				),
+			),
 		);
 		$this->settings->set_fields( $args );
 	}
@@ -130,42 +145,43 @@ class CustomTaxonomyController extends BaseController {
 	public function storeTaxonomies() {
 		$options = get_option( 'wpoop_plugin_tax' ) ?: array();
 
-		foreach( $options as $option ) {
+		foreach ( $options as $option ) {
+			// echo '<pre>';
+			// 	  print_r( $option );
+			// echo '</pre>';
 			$labels = array(
 				'name'              => $option['taxonomy'],
 				'singular_name'     => $option['singular_name'],
-				'search_items'      => __( 'Search ' . $option['singular_name'], 'textdomain' ),
-				'all_items'         => __( 'All ' . $option['singular_name'], 'textdomain' ),
-				'parent_item'       => __( 'Parent ' . $option['singular_name'], 'textdomain' ),
-				'parent_item_colon' => __( 'Parent ' . $option['singular_name'] . ':', 'textdomain' ),
-				'edit_item'         => __( 'Edit ' . $option['singular_name'], 'textdomain' ),
-				'update_item'       => __( 'Update ' . $option['singular_name'], 'textdomain' ),
-				'add_new_item'      => __( 'Add New ' . $option['singular_name'], 'textdomain' ),
-				'new_item_name'     => __( 'New ' . $option['singular_name'] . 'Name', 'textdomain' ),
-				'menu_name'         => __( $option['singular_name'], 'textdomain' ),
+				'search_items'      => __( 'Search ' . $option['singular_name'], 'wpoop-plugin' ),
+				'all_items'         => __( 'All ' . $option['singular_name'], 'wpoop-plugin' ),
+				'parent_item'       => __( 'Parent ' . $option['singular_name'], 'wpoop-plugin' ),
+				'parent_item_colon' => __( 'Parent ' . $option['singular_name'] . ':', 'wpoop-plugin' ),
+				'edit_item'         => __( 'Edit ' . $option['singular_name'], 'wpoop-plugin' ),
+				'update_item'       => __( 'Update ' . $option['singular_name'], 'wpoop-plugin' ),
+				'add_new_item'      => __( 'Add New ' . $option['singular_name'], 'wpoop-plugin' ),
+				'new_item_name'     => __( 'New ' . $option['singular_name'] . 'Name', 'wpoop-plugin' ),
+				'menu_name'         => __( $option['singular_name'], 'wpoop-plugin' ),
 			);
-		
+
 			$this->taxonomies[] = array(
-				'hierarchical'      => ( isset( $option['hierarchical'])) ? true : false,
+				'hierarchical'      => ( isset( $option['hierarchical'] ) ) ? true : false,
 				'labels'            => $labels,
 				'show_ui'           => true,
 				'show_in_rest'      => true,
 				'show_admin_column' => true,
 				'query_var'         => true,
 				'rewrite'           => array( 'slug' => $option['taxonomy'] ),
+				'objects'           => ( isset( $option['objects'] ) ) ? $option['objects'] : null,
 			);
 		}
 
 		// return $this->taxonomies;
 	}
-	
+
 	public function register_taxonomies() {
-		foreach( $this->taxonomies as $taxonomy ) {
-			// echo '<pre>';
-			// 	  print_r( $taxonomy );
-			// echo '</pre>';
-			register_taxonomy( $taxonomy['rewrite']['slug'], array( 'post' ), $taxonomy );
+		foreach ( $this->taxonomies as $taxonomy ) {
+			$objects = ( isset( $taxonomy['objects'] ) ) ? array_keys( $taxonomy['objects'] ) : null;
+			register_taxonomy( $taxonomy['rewrite']['slug'], $objects, $taxonomy );
 		}
 	}
-	
 }

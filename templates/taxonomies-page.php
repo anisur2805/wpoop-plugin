@@ -63,9 +63,6 @@
 			$options = get_option( 'wpoop_plugin_tax' ) ?: array();
 
 			foreach ( $options as $option ) {
-				echo '<pre>';
-					  print_r( $option );
-				echo '</pre>';
 				echo "<h4>{$option['singular_name']}</h4>";
 
 				echo '<pre class="prettyprint">';
@@ -107,20 +104,21 @@ $labels = array(
 		'supports'              => false,
 		'taxonomies'            => array( 'category', 'post_tag' ),
 		'hierarchical'          => false,
-		'public'                => <?php echo isset($option['public']) ? "true" : "false"; ?>,
+		'public'                => <?php echo isset( $option['public'] ) ? 'true' : 'false'; ?>,
 		'show_ui'               => true,
 		'show_in_menu'          => true,
 		'menu_position'         => 5,
 		'show_in_admin_bar'     => true,
 		'show_in_nav_menus'     => true,
 		'can_export'            => true,
-		'has_archive'           => <?php echo isset($option['has_archive']) ? "true" : "false"; ?>,
+		'has_archive'           => <?php echo isset( $option['has_archive'] ) ? 'true' : 'false'; ?>,
 		'exclude_from_search'   => false,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'page',
 	);
 	register_taxonomy( '<?php echo $option['taxonomy']; ?>', $args );
-				<?php echo '</pre>';
+				<?php
+				echo '</pre>';
 			}
 
 			?>
