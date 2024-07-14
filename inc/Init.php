@@ -16,6 +16,7 @@ final class Init {
 			Base\SettingsLinks::class,
 			Base\CustomPostTypeController::class,
 			Base\CustomTaxonomyController::class,
+			Base\WidgetController::class,
 		);
 	}
 
