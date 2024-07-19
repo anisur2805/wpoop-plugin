@@ -45,3 +45,13 @@ div.ui-toggle label:hover,
 div.ui-toggle label > div:hover {
     cursor: pointer;
 }
+
+.meta-container.meta-featured-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+    
+.meta-container.meta-featured-box + .meta-featured-box {
+    margin-top: 8px;
+}

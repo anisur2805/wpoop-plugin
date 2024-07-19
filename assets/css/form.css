@@ -1,0 +1,27 @@
+#testimonial-form .field-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#testimonial-form .field-container .error {
+    color: red;
+}
+
+#testimonial-form .field-container .success {
+    color: green;
+}
+
+#testimonial-form .field-container .field-message {
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+}
+
+#testimonial-form .field-container .field-message.show {
+    display: block;
+}

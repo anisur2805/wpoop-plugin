@@ -2,8 +2,8 @@
 
 namespace WPOOP\Base;
 
-use WPOOP\API\Widgets\MediaWidget;
 use WPOOP\Base\BaseController;
+use WPOOP\API\Widgets\MediaWidget;
 
 class WidgetController extends BaseController {
 

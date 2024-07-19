@@ -17,6 +17,7 @@ final class Init {
 			Base\CustomPostTypeController::class,
 			Base\CustomTaxonomyController::class,
 			Base\WidgetController::class,
+			Base\TestimonialController::class,
 		);
 	}
 
