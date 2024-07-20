@@ -35,7 +35,59 @@ class TestimonialController extends BaseController {
 		$this->shortcode_page();
 
 		add_shortcode( 'wpoop-testimonial-form', array( $this, 'render_testimonial_shortcode' ) );
+
+		add_action( 'wp_ajax_submit_testimonial', array( $this, 'submit_testimonial' ) );
+		add_action( 'wp_ajax_nopriv_submit_testimonial', array( $this, 'submit_testimonial' ) );
 	}
+
+	public function submit_testimonial() {
+
+		if ( ! DOING_AJAX || ! check_ajax_referer( 'testimonial-form-nonce', 'nonce' ) ) {
+			return $this->return_json( 'error' );
+		}
+
+		$name    = isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : '';
+		$email   = isset( $_POST['email'] ) ? sanitize_email( $_POST['email'] ) : '';
+		$message = isset( $_POST['message'] ) ? sanitize_textarea_field( $_POST['message'] ) : '';
+
+		$data = array(
+			'name'     => $name,
+			'email'    => $email,
+			'approved' => 0,
+			'featured' => 0,
+		);
+
+		$args = array(
+			'post_title'   => 'Testimonial from ' . $name,
+			'post_content' => $message,
+			'post_author'  => 1,
+			'post_status'  => 'draft',
+			'post_type'    => 'testimonial',
+			'meta_input'   => array(
+				'_wpoop_testimonial_key' => $data,
+			),
+		);
+
+		$post_id = wp_insert_post( $args );
+
+		if ( $post_id ) {
+			return $this->return_json( 'success' );
+		}
+
+		return $this->return_json( 'error' );
+	}
+
+	public function return_json( $status ) {
+		$return = array(
+			'status' => $status,
+		);
+
+		wp_send_json( $return );
+
+		wp_die();
+	}
+
+
 
 	public function render_testimonial_shortcode() {
 		ob_start();

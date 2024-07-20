@@ -1,4 +1,4 @@
-<form method="post" id="testimonial-form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
+<form method="post" id="testimonial-form" action="#" data-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>">
 	<div class="field-container">
 		<label for="name">Your Name</label>
 		<input type="text" name="name" value="" class="form-input" id="name" placeholder="Your name"  />
@@ -18,6 +18,8 @@
 	</div>
 
 	<div class="field-container">
+		<input type="hidden" name="action" value="submit_testimonial" />
+		<input type="hidden" name="nonce" value="<?php echo wp_create_nonce( 'testimonial-form-nonce' ); ?>" />
 		<button type="submit" class="btn btn-primary">Submit</button>
 		<small class="field-message js-form-submission">Form submission is in progress, please wait...</small>
 		<small class="field-message success js-form-success">Form submitted successfully</small>
