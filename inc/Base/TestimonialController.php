@@ -36,6 +36,8 @@ class TestimonialController extends BaseController {
 
 		add_shortcode( 'wpoop-testimonial-form', array( $this, 'render_testimonial_shortcode' ) );
 
+		add_shortcode( 'wpoop-testimonial-slideshow', array( $this, 'render_testimonial_slideshow_shortcode' ) );
+
 		add_action( 'wp_ajax_submit_testimonial', array( $this, 'submit_testimonial' ) );
 		add_action( 'wp_ajax_nopriv_submit_testimonial', array( $this, 'submit_testimonial' ) );
 	}
@@ -87,13 +89,19 @@ class TestimonialController extends BaseController {
 		wp_die();
 	}
 
-
-
 	public function render_testimonial_shortcode() {
 		ob_start();
 		echo "<link rel=\"stylesheet\" href=\"{$this->plugin_url}assets/css/form.css\" type=\"text/css\" />";
 		require_once "$this->plugin_path/templates/form.php";
 		echo "<script src=\"{$this->plugin_url}assets/js/form.js\"></script>";
+		return ob_get_clean();
+	}
+
+	public function render_testimonial_slideshow_shortcode() {
+		ob_start();
+		echo "<link rel=\"stylesheet\" href=\"{$this->plugin_url}assets/css/slider.css\" type=\"text/css\" />";
+		require_once "$this->plugin_path/templates/slider.php";
+		echo "<script src=\"{$this->plugin_url}assets/js/slider.js\"></script>";
 		return ob_get_clean();
 	}
 
