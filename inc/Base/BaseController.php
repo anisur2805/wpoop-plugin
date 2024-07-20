@@ -33,6 +33,7 @@ class BaseController {
 			'login_manager'        => 'Active Login Manager',
 			'membership_manager'   => 'Active Membership Manager',
 			'chat_manager'         => 'Active Chat Manager',
+			'custom_tmp_manager'   => 'Active Custom Template',
 		);
 	}
 
