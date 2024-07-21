@@ -1,0 +1,62 @@
+form#wpoop-auth-form {
+    position: absolute;
+    /* overflow: hidden; */
+    right: 0;
+    z-index: 9;
+    top: 20px;
+}
+
+a#close {
+    position: absolute;
+    right: 10px;
+    text-decoration: none;
+    top: 10px;
+    cursor: pointer;
+}
+
+.auth-btn-container {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.auth-btn-container.hide {
+    display: none;
+}
+
+form#wpoop-auth-form p.status.error {
+    color: red;
+}
+
+
+form#wpoop-auth-form p.status.success {
+    color: green;
+}
+
+form#wpoop-auth-form p.status {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.wpoop-auth-login {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 320px;
+    box-sizing: border-box;
+    transition: transform 0.3s linear;
+    transform: translateX(calc(100% + 20px));
+}
+
+.show .wpoop-auth-login {
+    transform: translateX(0);
+}
+
+.auth-group {
+    margin-top: 10px;
+}

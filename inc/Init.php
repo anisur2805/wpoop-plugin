@@ -19,6 +19,7 @@ final class Init {
 			Base\WidgetController::class,
 			Base\TestimonialController::class,
 			Base\PageTemplateController::class,
+			Base\AuthController::class,
 		);
 	}
 
