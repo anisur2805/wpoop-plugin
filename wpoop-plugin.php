@@ -9,21 +9,21 @@
  * Text Domain: wpoop-plugin
  * License:     GPL v2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
- * 
+ *
  * @package WPoopPlugin
  */
 
-if ( !defined( 'ABSPATH' ) ) {
- exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
 }
 
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-    require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
 }
 
 register_activation_hook( __FILE__, array( 'WPOOP\\Base\\Activate', 'active' ) );
 register_deactivation_hook( __FILE__, array( 'WPOOP\\Base\\Deactivate', 'deactivated' ) );
 
 if ( class_exists( 'WPOOP\\Init' ) ) {
-    WPOOP\Init::register_services();
+	WPOOP\Init::register_services();
 }

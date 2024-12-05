@@ -174,7 +174,7 @@ class CustomPostTypeController extends BaseController {
 			array(
 				'option_group' => 'wpoop_plugin_cpt_settings',
 				'option_name'  => 'wpoop_plugin_cpt',
-				'callback'     => array( $this->cpt_callbacks, 'cptSanitize' ),
+				'callback'     => array( $this->cpt_callbacks, 'cpt_sanitize' ),
 			),
 		);
 
@@ -186,7 +186,7 @@ class CustomPostTypeController extends BaseController {
 			array(
 				'id'       => 'wpoop_cpt_index',
 				'title'    => 'WPOOP Plugin CPT Managers',
-				'callback' => array( $this->cpt_callbacks, 'cptSectionManager' ),
+				'callback' => array( $this->cpt_callbacks, 'cpt_section_manager' ),
 				'page'     => 'wpoop_cpt',
 			),
 		);

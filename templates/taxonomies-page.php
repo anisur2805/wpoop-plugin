@@ -60,7 +60,7 @@
 			<h3>Export Your Taxonomy</h3>
 			
 			<?php
-			$options = get_option( 'wpoop_plugin_tax' ) ?: array();
+			$options = get_option( 'wpoop_plugin_tax' ) ?: array(); // phpcs:ignore
 
 			foreach ( $options as $option ) {
 				echo "<h4>{$option['singular_name']}</h4>";

@@ -3,11 +3,11 @@ namespace WPOOP\API\Callbacks;
 
 class TaxonomyCallbacks {
 
-	public function taxSectionManager() {
+	public function tax_section_manager() {
 		echo 'Manage the Taxonomy of this Plugin by activating or deactivating the checkboxes from the below.';
 	}
 
-	public function taxSanitize( $input ) {
+	public function tax_sanitize( $input ) {
 		$output = get_option( 'wpoop_plugin_tax' );
 
 		if ( isset( $_POST['remove'] ) ) {

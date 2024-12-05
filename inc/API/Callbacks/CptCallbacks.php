@@ -3,11 +3,11 @@ namespace WPOOP\API\Callbacks;
 
 class CptCallbacks {
 
-	public function cptSectionManager() {
+	public function cpt_section_manager() {
 		echo 'Manage the Post Types of this Plugin by activating or deactivating the checkboxes from the below.';
 	}
 
-	public function cptSanitize( $input ) {
+	public function cpt_sanitize( $input ) {
 		$output = get_option( 'wpoop_plugin_cpt' );
 
 		if ( isset( $_POST['remove'] ) ) {

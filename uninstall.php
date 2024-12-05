@@ -9,16 +9,22 @@
 
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-    exit;
+	exit;
 }
 
 
 /**
  * Delete all wpoop posts method 1
  */
-$wpoops = get_posts( array( 'post_type' => 'wpoop', 'numberposts' => -1, 'post_status' => 'any' ) );
+$wpoops = get_posts(
+	array(
+		'post_type'   => 'wpoop',
+		'numberposts' => -1,
+		'post_status' => 'any',
+	)
+);
 foreach ( $wpoops as $wpoop ) {
-    wp_delete_post( $wpoop->ID, true );
+	wp_delete_post( $wpoop->ID, true );
 }
 
 /**

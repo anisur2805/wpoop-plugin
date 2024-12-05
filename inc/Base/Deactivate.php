@@ -10,12 +10,12 @@ namespace WPOOP\Base;
  */
 
 class Deactivate {
-     /**
-      * Deactivate plugin
-      *
-      * @since 1.0.0
-      */
-    public static function deactivated() {
-        flush_rewrite_rules();
-    }
+	/**
+	 * Deactivate plugin
+	 *
+	 * @since 1.0.0
+	 */
+	public static function deactivated() {
+		flush_rewrite_rules();
+	}
 }

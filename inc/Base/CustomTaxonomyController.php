@@ -64,7 +64,7 @@ class CustomTaxonomyController extends BaseController {
 			array(
 				'option_group' => 'wpoop_plugin_tax_settings',
 				'option_name'  => 'wpoop_plugin_tax',
-				'callback'     => array( $this->tax_callbacks, 'taxSanitize' ),
+				'callback'     => array( $this->tax_callbacks, 'tax_sanitize' ),
 			),
 		);
 
@@ -76,7 +76,7 @@ class CustomTaxonomyController extends BaseController {
 			array(
 				'id'       => 'wpoop_tax_index',
 				'title'    => 'WPOOP Plugin Taxonomy Managers',
-				'callback' => array( $this->tax_callbacks, 'taxSectionManager' ),
+				'callback' => array( $this->tax_callbacks, 'tax_section_manager' ),
 				'page'     => 'wpoop_tax',
 			),
 		);
@@ -143,24 +143,21 @@ class CustomTaxonomyController extends BaseController {
 	}
 
 	public function storeTaxonomies() {
-		$options = get_option( 'wpoop_plugin_tax' ) ?: array();
+		$options = get_option( 'wpoop_plugin_tax' ) ?: array(); // phpcs:ignore
 
 		foreach ( $options as $option ) {
-			// echo '<pre>';
-			// 	  print_r( $option );
-			// echo '</pre>';
 			$labels = array(
 				'name'              => $option['taxonomy'],
 				'singular_name'     => $option['singular_name'],
-				'search_items'      => __( 'Search ' . $option['singular_name'], 'wpoop-plugin' ),
-				'all_items'         => __( 'All ' . $option['singular_name'], 'wpoop-plugin' ),
-				'parent_item'       => __( 'Parent ' . $option['singular_name'], 'wpoop-plugin' ),
-				'parent_item_colon' => __( 'Parent ' . $option['singular_name'] . ':', 'wpoop-plugin' ),
-				'edit_item'         => __( 'Edit ' . $option['singular_name'], 'wpoop-plugin' ),
-				'update_item'       => __( 'Update ' . $option['singular_name'], 'wpoop-plugin' ),
-				'add_new_item'      => __( 'Add New ' . $option['singular_name'], 'wpoop-plugin' ),
-				'new_item_name'     => __( 'New ' . $option['singular_name'] . 'Name', 'wpoop-plugin' ),
-				'menu_name'         => __( $option['singular_name'], 'wpoop-plugin' ),
+				'search_items'      => __( 'Search ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'all_items'         => __( 'All ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'parent_item'       => __( 'Parent ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'parent_item_colon' => __( 'Parent ' . $option['singular_name'] . ':', 'wpoop-plugin' ), // phpcs:ignore
+				'edit_item'         => __( 'Edit ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'update_item'       => __( 'Update ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'add_new_item'      => __( 'Add New ' . $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
+				'new_item_name'     => __( 'New ' . $option['singular_name'] . 'Name', 'wpoop-plugin' ), // phpcs:ignore
+				'menu_name'         => __( $option['singular_name'], 'wpoop-plugin' ), // phpcs:ignore
 			);
 
 			$this->taxonomies[] = array(
